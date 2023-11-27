@@ -91,6 +91,7 @@ class StartScreen extends StatelessWidget {
                   child: const Icon(
                     Icons.list,
                     size: 30.0,
+                    color: Color.fromARGB(255, 32, 32, 32),
                   ),
                   onPressed: () {
                     Navigator.push(
