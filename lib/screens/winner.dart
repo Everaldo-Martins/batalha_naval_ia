@@ -22,7 +22,7 @@ class Winner extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/bg.jpg'),
-            fit: BoxFit.fill,
+            fit: BoxFit.cover,
           ),
         ),
         child: BackdropFilter(

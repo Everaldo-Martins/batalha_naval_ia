@@ -61,6 +61,10 @@ class _GameState extends State<Game> {
     }
   }
 
+  void insertShipPosition() {
+    //ship.playerGrid = ship.shipsLoad(false);
+  }
+
   String getImageFromGrid(
       List<List<List<int>>> grid, int x, int y, bool isComputer) {
     int cellValue = grid[y][x][0];
@@ -142,137 +146,141 @@ class _GameState extends State<Game> {
           color: Color.fromARGB(255, 216, 216, 216),
         ),
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Stack(
+      body: Expanded(
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Image.asset(
+                'assets/bg.jpg',
+                fit: BoxFit.cover,
+              ),
+            ),
+            Row(
               children: [
-                Positioned.fill(
-                  child: Image.asset(
-                    'assets/bg.jpg',
-                    fit: BoxFit.cover,
+                Expanded(
+                  child: Container(
+                    constraints: const BoxConstraints(
+                      minWidth: 350.0,
+                      maxWidth: 500.0,
+                      minHeight: 400.0,
+                      maxHeight: 465.0,
+                    ),
+                    padding: const EdgeInsets.all(10.0),
+                    color: const Color.fromARGB(100, 228, 228, 228),
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: gridX,
+                        crossAxisSpacing: 0.0,
+                        mainAxisSpacing: 0.0,
+                      ),
+                      itemCount: gridY * gridX,
+                      itemBuilder: (_, i) {
+                        int x = i % gridX;
+                        int y = i ~/ gridX;
+                        return Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 0.5,
+                              color: const Color.fromARGB(255, 32, 32, 32),
+                            ),
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              getImageFromGrid(ship.playerGrid, x, y, false),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.all(20.0),
-                        color: const Color.fromARGB(100, 228, 228, 228),
-                        height: double.maxFinite,
-                        child: GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: gridX,
-                            crossAxisSpacing: 0.0,
-                            mainAxisSpacing: 0.0,
-                          ),
-                          itemCount: gridY * gridX,
-                          itemBuilder: (_, i) {
-                            int x = i % gridX;
-                            int y = i ~/ gridX;
-                            return Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 0.8,
-                                  color: const Color.fromARGB(255, 32, 32, 32),
-                                ),
-                              ),
-                              child: Center(
-                                child: Image.asset(
-                                  getImageFromGrid(
-                                      ship.playerGrid, x, y, false),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
+                Expanded(
+                  child: Container(
+                    constraints: const BoxConstraints(
+                      minWidth: 350.0,
+                      maxWidth: 500.0,
+                      minHeight: 400.0,
+                      maxHeight: 465.0,
                     ),
-                    Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.all(20.0),
-                        color: const Color.fromARGB(100, 228, 228, 228),
-                        height: double.maxFinite,
-                        child: GridView.builder(
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: gridX,
-                            crossAxisSpacing: 0.0,
-                            mainAxisSpacing: 0.0,
-                          ),
-                          itemCount: gridY * gridX,
-                          itemBuilder: (_, i) {
-                            int x = i % gridX;
-                            int y = i ~/ gridX;
-                            return GestureDetector(
-                              onTap: () => updateBoard(x, y),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    width: 0.8,
-                                    color:
-                                        const Color.fromARGB(255, 32, 32, 32),
-                                  ),
-                                ),
-                                child: Center(
-                                  child: Image.asset(
-                                    getImageFromGrid(
-                                        ship.computerGrid, x, y, true),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                    padding: const EdgeInsets.all(10.0),
+                    color: const Color.fromARGB(100, 228, 228, 228),
+                    height: double.maxFinite,
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: gridX,
+                        crossAxisSpacing: 0.0,
+                        mainAxisSpacing: 0.0,
                       ),
-                    ),
-                  ],
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(18.0),
-                    child: SizedBox(
-                      width: 80,
-                      height: 50,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(5.0),
-                          color: const Color.fromARGB(255, 33, 149, 243),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 92, 92, 92),
-                              spreadRadius: 1,
-                              blurRadius: 15,
+                      itemCount: gridY * gridX,
+                      itemBuilder: (_, i) {
+                        int x = i % gridX;
+                        int y = i ~/ gridX;
+                        return GestureDetector(
+                          onTap: () => updateBoard(x, y),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                width: 0.5,
+                                color: const Color.fromARGB(255, 32, 32, 32),
+                              ),
                             ),
-                          ],
-                        ),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
-                            elevation: 0,
+                            child: Center(
+                              child: Image.asset(
+                                getImageFromGrid(ship.computerGrid, x, y, true),
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                          child: const Icon(
-                            Icons.bolt,
-                            size: 30.0,
-                            color: Colors.amber,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              isSuperShot =
-                                  !isSuperShot; // Alternar entre true e false
-                            });
-                          },
-                        ),
-                      ),
+                        );
+                      },
                     ),
                   ),
                 ),
               ],
             ),
-          ),
-        ],
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: SizedBox(
+                  width: 80,
+                  height: 50,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5.0),
+                      color: const Color.fromARGB(255, 33, 149, 243),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color.fromARGB(255, 92, 92, 92),
+                          spreadRadius: 1,
+                          blurRadius: 15,
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        elevation: 0,
+                      ),
+                      child: const Icon(
+                        Icons.bolt,
+                        size: 30.0,
+                        color: Colors.amber,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isSuperShot =
+                              !isSuperShot; // Alternar entre true e false
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

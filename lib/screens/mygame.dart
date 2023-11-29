@@ -16,7 +16,7 @@ class MyGame extends StatelessWidget {
             // Adicionando uma imagem de fundo
             image: DecorationImage(
               image: AssetImage('assets/bg.jpg'),
-              fit: BoxFit.fill,
+              fit: BoxFit.cover,
             ),
           ),
           child: Center(
