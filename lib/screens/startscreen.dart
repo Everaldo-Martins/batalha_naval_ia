@@ -4,12 +4,20 @@ import 'scoreboard.dart';
 import 'mygame.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({super.key});
+  const StartScreen({super.key, required String title});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return MaterialApp(
+      title: 'Batalha Naval - IA',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 33, 149, 243),
+        ),
+        useMaterial3: true,
+      ),
+      home: Stack(
         children: [
           Container(
             width: MediaQuery.of(context).size.width,
@@ -29,7 +37,7 @@ class StartScreen extends StatelessWidget {
                   height: 229.0,
                 ),
 
-                const SizedBox(height: 10),
+                const SizedBox(height: 20),
 
                 // Botão "Jogar"
                 Container(

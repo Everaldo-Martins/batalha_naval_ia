@@ -155,14 +155,16 @@ class _GameState extends State<Game> {
                 fit: BoxFit.cover,
               ),
             ),
-            Row(
+            Column(
               children: [
                 Expanded(
                   child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
                     constraints: const BoxConstraints(
-                      minWidth: 350.0,
+                      minWidth: 300.0,
                       maxWidth: 500.0,
-                      minHeight: 400.0,
+                      minHeight: 200.0,
                       maxHeight: 465.0,
                     ),
                     padding: const EdgeInsets.all(10.0),
@@ -197,15 +199,16 @@ class _GameState extends State<Game> {
                 ),
                 Expanded(
                   child: Container(
+                    width: double.infinity,
+                    height: double.infinity,
                     constraints: const BoxConstraints(
-                      minWidth: 350.0,
+                      minWidth: 300.0,
                       maxWidth: 500.0,
-                      minHeight: 400.0,
+                      minHeight: 200.0,
                       maxHeight: 465.0,
                     ),
                     padding: const EdgeInsets.all(10.0),
                     color: const Color.fromARGB(100, 228, 228, 228),
-                    height: double.maxFinite,
                     child: GridView.builder(
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: gridX,

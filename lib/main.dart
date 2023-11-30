@@ -18,9 +18,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: 'Batalha Naval - IA',
       debugShowCheckedModeBanner: false,
-      home: StartScreen(),
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 33, 149, 243),
+        ),
+        useMaterial3: true,
+      ),
+      home: const StartScreen(title: 'Batalha Naval - IA'),
     );
   }
 }
@@ -32,13 +39,16 @@ Future<void> addBanco(String name, int score) async {
   var playersExists = playersBox.values.any((players) => players.name == name);
 
   if (!playersExists) {
-    var players = Players(name, score,);
+    var players = Players(
+      name,
+      score,
+    );
     await playersBox.add(players);
   } else {
-    var existingPlayer = playersBox.values.firstWhere((players) => players.name == name);
+    var existingPlayer =
+        playersBox.values.firstWhere((players) => players.name == name);
     // Access the existing players and update the score
     existingPlayer.score = score;
-    await playersBox.put(
-        existingPlayer.key, existingPlayer);
+    await playersBox.put(existingPlayer.key, existingPlayer);
   }
 }

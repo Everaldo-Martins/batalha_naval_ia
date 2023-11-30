@@ -8,7 +8,14 @@ class MyGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Batalha Naval - IA',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color.fromARGB(255, 33, 149, 243),
+        ),
+        useMaterial3: true,
+      ),
       home: Scaffold(
         appBar: null,
         body: Container(
@@ -20,9 +27,13 @@ class MyGame extends StatelessWidget {
             ),
           ),
           child: Center(
-            child: SizedBox(
-              width: 450.0,
-              height: 350.0,
+            child: Container(
+              constraints: const BoxConstraints(
+                minWidth: 350.0,
+                maxWidth: 450.0,
+                minHeight: 300.0,
+                maxHeight: 400.0,
+              ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: BackdropFilter(
@@ -88,7 +99,7 @@ class _StartGameState extends State<StartGame> {
             ),
           ),
         ),
-        const SizedBox(height: 20.0),
+        const SizedBox(height: 10.0),
         const Text(
           'Tamanho do tabuleiro',
           style: TextStyle(
@@ -136,7 +147,7 @@ class _StartGameState extends State<StartGame> {
             ),
           ],
         ),
-        const SizedBox(height: 20.0),
+        const SizedBox(height: 10.0),
         TextButton(
           onPressed: _isButtonEnabled
               ? () {

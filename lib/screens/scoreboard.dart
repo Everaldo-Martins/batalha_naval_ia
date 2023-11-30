@@ -34,7 +34,7 @@ class ScoreBoard extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Top 5 - Ranking',
+          'Batalha Naval - IA',
           style: TextStyle(
             color: Color.fromARGB(255, 216, 216, 216),
           ),
