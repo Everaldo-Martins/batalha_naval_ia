@@ -29,11 +29,12 @@ class MyGame extends StatelessWidget {
           child: Center(
             child: Container(
               constraints: const BoxConstraints(
-                minWidth: 350.0,
+                minWidth: 300.0,
                 maxWidth: 450.0,
                 minHeight: 300.0,
                 maxHeight: 400.0,
               ),
+              margin: const EdgeInsets.all(10.0),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20.0),
                 child: BackdropFilter(

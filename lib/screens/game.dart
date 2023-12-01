@@ -1,5 +1,6 @@
-import 'package:batalha_naval/main.dart';
+// ignore_for_file: library_private_types_in_public_api
 import 'package:flutter/material.dart';
+import '../main.dart';
 import '/code/player.dart';
 import '/code/computer.dart';
 import '/code/ships.dart';
@@ -13,7 +14,6 @@ class Game extends StatefulWidget {
       : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _GameState createState() => _GameState();
 }
 
@@ -146,144 +146,187 @@ class _GameState extends State<Game> {
           color: Color.fromARGB(255, 216, 216, 216),
         ),
       ),
-      body: Expanded(
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: Image.asset(
-                'assets/bg.jpg',
-                fit: BoxFit.cover,
-              ),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Image.asset(
+              'assets/bg.jpg',
+              fit: BoxFit.cover,
             ),
-            Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    constraints: const BoxConstraints(
-                      minWidth: 300.0,
-                      maxWidth: 500.0,
-                      minHeight: 200.0,
-                      maxHeight: 465.0,
-                    ),
-                    padding: const EdgeInsets.all(10.0),
-                    color: const Color.fromARGB(100, 228, 228, 228),
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: gridX,
-                        crossAxisSpacing: 0.0,
-                        mainAxisSpacing: 0.0,
-                      ),
-                      itemCount: gridY * gridX,
-                      itemBuilder: (_, i) {
-                        int x = i % gridX;
-                        int y = i ~/ gridX;
-                        return Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              width: 0.5,
-                              color: const Color.fromARGB(255, 32, 32, 32),
-                            ),
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              getImageFromGrid(ship.playerGrid, x, y, false),
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
+          ),
+          Column(
+            children: [
+              Container(
+                constraints: const BoxConstraints(
+                  minWidth: 300.0,
+                  maxWidth: 500.0,
+                  minHeight: 212.0,
+                  maxHeight: 330.0,
                 ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    constraints: const BoxConstraints(
-                      minWidth: 300.0,
-                      maxWidth: 500.0,
-                      minHeight: 200.0,
-                      maxHeight: 465.0,
-                    ),
-                    padding: const EdgeInsets.all(10.0),
-                    color: const Color.fromARGB(100, 228, 228, 228),
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: gridX,
-                        crossAxisSpacing: 0.0,
-                        mainAxisSpacing: 0.0,
+                padding: const EdgeInsets.all(5.0),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5.0, horizontal: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(80.0),
+                          color: const Color.fromARGB(255, 33, 149, 243),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 92, 92, 92),
+                              spreadRadius: 1,
+                              blurRadius: 15,
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          widget.playerName,
+                          style: const TextStyle(
+                            color: Color.fromARGB(255, 32, 32, 32),
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
                       ),
-                      itemCount: gridY * gridX,
-                      itemBuilder: (_, i) {
-                        int x = i % gridX;
-                        int y = i ~/ gridX;
-                        return GestureDetector(
-                          onTap: () => updateBoard(x, y),
-                          child: Container(
+                    ),
+                    Expanded(
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: gridX,
+                          crossAxisSpacing: 0.0,
+                          mainAxisSpacing: 0.0,
+                        ),
+                        itemCount: gridY * gridX,
+                        itemBuilder: (_, i) {
+                          int x = i % gridX;
+                          int y = i ~/ gridX;
+                          return Container(
                             decoration: BoxDecoration(
                               border: Border.all(
                                 width: 0.5,
-                                color: const Color.fromARGB(255, 32, 32, 32),
+                                color: const Color.fromARGB(255, 12, 12, 12),
                               ),
                             ),
                             child: Center(
                               child: Image.asset(
-                                getImageFromGrid(ship.computerGrid, x, y, true),
+                                getImageFromGrid(ship.playerGrid, x, y, false),
                                 fit: BoxFit.cover,
                               ),
                             ),
-                          ),
-                        );
-                      },
+                          );
+                        },
+                      ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Padding(
-                padding: const EdgeInsets.all(18.0),
-                child: SizedBox(
-                  width: 80,
-                  height: 50,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
-                      color: const Color.fromARGB(255, 33, 149, 243),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromARGB(255, 92, 92, 92),
-                          spreadRadius: 1,
-                          blurRadius: 15,
+              ),
+              Container(
+                constraints: const BoxConstraints(
+                  minWidth: 300.0,
+                  maxWidth: 500.0,
+                  minHeight: 212.0,
+                  maxHeight: 330.0,
+                ),
+                padding: const EdgeInsets.all(5.0),
+                child: Column(
+                  children: [
+                    Align(
+                      alignment: Alignment.topCenter,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5.0, horizontal: 10.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(80.0),
+                          color: const Color.fromARGB(255, 33, 149, 243),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 92, 92, 92),
+                              spreadRadius: 1,
+                              blurRadius: 15,
+                            ),
+                          ],
                         ),
-                      ],
+                        child: const Text(
+                          'Computador',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 32, 32, 32),
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
                     ),
+                    Expanded(
+                      child: GridView.builder(
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: gridX,
+                          crossAxisSpacing: 0.0,
+                          mainAxisSpacing: 0.0,
+                        ),
+                        itemCount: gridY * gridX,
+                        itemBuilder: (_, i) {
+                          int x = i % gridX;
+                          int y = i ~/ gridX;
+                          return GestureDetector(
+                            onTap: () => updateBoard(x, y),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  width: 0.5,
+                                  color: const Color.fromARGB(255, 32, 32, 32),
+                                ),
+                              ),
+                              child: Center(
+                                child: Image.asset(
+                                  getImageFromGrid(
+                                      ship.computerGrid, x, y, true),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Align(
+                child: Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: SizedBox(
+                    width: 80,
+                    height: 50,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0),
+                        ),
+                        backgroundColor:
+                            const Color.fromARGB(255, 33, 149, 243),
+                        shadowColor: const Color.fromARGB(255, 92, 92, 92),
+                        elevation: 15,
                       ),
+                      onPressed: () {
+                        setState(() {
+                          isSuperShot = !isSuperShot;
+                        });
+                      },
                       child: const Icon(
                         Icons.bolt,
                         size: 30.0,
                         color: Colors.amber,
                       ),
-                      onPressed: () {
-                        setState(() {
-                          isSuperShot =
-                              !isSuperShot; // Alternar entre true e false
-                        });
-                      },
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
+        ],
       ),
     );
   }

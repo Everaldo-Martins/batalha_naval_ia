@@ -31,14 +31,12 @@ class StartScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image.asset(
-                  'assets/logo_start.png',
-                  width: 600.0,
-                  height: 229.0,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Image.asset('assets/logo_start.png',
+                      width: 600.0, height: 229.0),
                 ),
-
                 const SizedBox(height: 20),
-
                 // Botão "Jogar"
                 Container(
                   decoration: BoxDecoration(
@@ -81,7 +79,7 @@ class StartScreen extends StatelessWidget {
               height: 50,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
+                  borderRadius: BorderRadius.circular(80.0),
                   color: const Color.fromARGB(255, 33, 149, 243),
                   boxShadow: const [
                     BoxShadow(
@@ -93,7 +91,7 @@ class StartScreen extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.transparent,
+                    backgroundColor: const Color.fromARGB(0, 129, 129, 129),
                     elevation: 0,
                   ),
                   child: const Icon(
