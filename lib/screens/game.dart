@@ -61,10 +61,6 @@ class _GameState extends State<Game> {
     }
   }
 
-  void insertShipPosition() {
-    //ship.playerGrid = ship.shipsLoad(false);
-  }
-
   String getImageFromGrid(
       List<List<List<int>>> grid, int x, int y, bool isComputer) {
     int cellValue = grid[y][x][0];
@@ -154,14 +150,16 @@ class _GameState extends State<Game> {
               fit: BoxFit.cover,
             ),
           ),
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 constraints: const BoxConstraints(
                   minWidth: 300.0,
                   maxWidth: 500.0,
-                  minHeight: 212.0,
-                  maxHeight: 330.0,
+                  minHeight: 215.0,
+                  maxHeight: 400.0,
                 ),
                 padding: const EdgeInsets.all(5.0),
                 child: Column(
@@ -169,23 +167,24 @@ class _GameState extends State<Game> {
                     Align(
                       alignment: Alignment.topCenter,
                       child: Container(
+                        width: double.infinity,
                         padding: const EdgeInsets.symmetric(
                             vertical: 5.0, horizontal: 10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(80.0),
-                          color: const Color.fromARGB(255, 33, 149, 243),
-                          boxShadow: const [
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 39, 39, 39),
+                          boxShadow: [
                             BoxShadow(
                               color: Color.fromARGB(255, 92, 92, 92),
-                              spreadRadius: 1,
+                              spreadRadius: 0,
                               blurRadius: 15,
                             ),
                           ],
                         ),
                         child: Text(
                           widget.playerName,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
-                            color: Color.fromARGB(255, 32, 32, 32),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: 18.0,
                             fontWeight: FontWeight.w500,
                           ),
@@ -227,8 +226,8 @@ class _GameState extends State<Game> {
                 constraints: const BoxConstraints(
                   minWidth: 300.0,
                   maxWidth: 500.0,
-                  minHeight: 212.0,
-                  maxHeight: 330.0,
+                  minHeight: 215.0,
+                  maxHeight: 400.0,
                 ),
                 padding: const EdgeInsets.all(5.0),
                 child: Column(
@@ -236,23 +235,24 @@ class _GameState extends State<Game> {
                     Align(
                       alignment: Alignment.topCenter,
                       child: Container(
+                        width: double.infinity,
                         padding: const EdgeInsets.symmetric(
                             vertical: 5.0, horizontal: 10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(80.0),
-                          color: const Color.fromARGB(255, 33, 149, 243),
-                          boxShadow: const [
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 39, 39, 39),
+                          boxShadow: [
                             BoxShadow(
                               color: Color.fromARGB(255, 92, 92, 92),
-                              spreadRadius: 1,
+                              spreadRadius: 0,
                               blurRadius: 15,
                             ),
                           ],
                         ),
                         child: const Text(
                           'Computador',
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Color.fromARGB(255, 32, 32, 32),
+                            color: Color.fromARGB(255, 255, 255, 255),
                             fontSize: 18.0,
                             fontWeight: FontWeight.w500,
                           ),
@@ -293,38 +293,39 @@ class _GameState extends State<Game> {
                     ),
                   ],
                 ),
-              ),
-              Align(
-                child: Padding(
-                  padding: const EdgeInsets.all(18.0),
-                  child: SizedBox(
-                    width: 80,
-                    height: 50,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(80.0),
-                        ),
-                        backgroundColor:
-                            const Color.fromARGB(255, 33, 149, 243),
-                        shadowColor: const Color.fromARGB(255, 92, 92, 92),
-                        elevation: 15,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          isSuperShot = !isSuperShot;
-                        });
-                      },
-                      child: const Icon(
-                        Icons.bolt,
-                        size: 30.0,
-                        color: Colors.amber,
-                      ),
+              ),              
+            ],
+          ),
+          Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: SizedBox(
+                width: 80,
+                height: 50,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(80.0),
                     ),
+                    backgroundColor:
+                        const Color.fromARGB(255, 33, 149, 243),
+                    shadowColor: const Color.fromARGB(255, 92, 92, 92),
+                    elevation: 15,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      isSuperShot = !isSuperShot;
+                    });
+                  },
+                  child: const Icon(
+                    Icons.bolt,
+                    size: 36.0,
+                    color: Colors.amber,
                   ),
                 ),
               ),
-            ],
+            ),
           ),
         ],
       ),
