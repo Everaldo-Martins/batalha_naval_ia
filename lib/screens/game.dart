@@ -144,7 +144,7 @@ class _GameState extends State<Game> {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          bool isLandscape = constraints.maxWidth > constraints.maxHeight;
+          bool isLandscape = MediaQuery.of(context).size.width > 800;
           return Stack(
             children: [
               Positioned.fill(
@@ -204,11 +204,11 @@ class _GameState extends State<Game> {
       Container(
         constraints: const BoxConstraints(
           minWidth: 300.0,
-          maxWidth: 500.0,
+          maxWidth: 600.0,
           minHeight: 250.0,
-          maxHeight: 300.0,
+          maxHeight: 400.0,
         ),
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             Align(
@@ -274,11 +274,11 @@ class _GameState extends State<Game> {
       Container(
         constraints: const BoxConstraints(
           minWidth: 300.0,
-          maxWidth: 500.0,
+          maxWidth: 600.0,
           minHeight: 250.0,
-          maxHeight: 300.0,
+          maxHeight: 400.0,
         ),
-        padding: const EdgeInsets.all(5.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             Align(
