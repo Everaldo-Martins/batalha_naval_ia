@@ -31,10 +31,13 @@ class Winner extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Image.asset(
-                'assets/winner.png',
-                width: 450.0,
-                height: 249.0,
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset(
+                  'assets/winner.png',
+                  width: 450.0,
+                  height: 249.0,
+                ),
               ),
               const SizedBox(height: 20),
               Text(
@@ -53,31 +56,37 @@ class Winner extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 50.0),
-              TextButton(
-                child: Material(
-                  borderRadius: BorderRadius.circular(10.0),
-                  color: const Color.fromARGB(255, 33, 149, 243),
-                  elevation: 15,
-                  shadowColor: const Color.fromARGB(255, 92, 92, 92),
-                  child: const Padding(
-                    padding:
-                        EdgeInsets.symmetric(vertical: 14.0, horizontal: 52.0),
-                    child: Text(
-                      'Jogar novamente',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 37, 37, 37),
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w600,
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: const Color.fromARGB(255, 32, 32, 32), width: 4),
+                  color:
+                      const Color.fromARGB(255, 33, 149, 243).withOpacity(0.7),
+                  shape: BoxShape.circle,
+                ),
+                child: SizedBox(
+                  width: 90.0,
+                  height: 90.0,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(100.0),
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+                      child: IconButton(
+                        iconSize: 62,
+                        icon: const Icon(Icons.restart_alt_sharp),
+                        color: const Color.fromARGB(255, 37, 37, 37),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const MyGame(),
+                            ),
+                          );
+                        },
                       ),
                     ),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyGame()),
-                  );
-                },
               ),
               const SizedBox(height: 20.0),
               Padding(
@@ -87,7 +96,7 @@ class Winner extends StatelessWidget {
                   height: 50,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5.0),
+                      borderRadius: BorderRadius.circular(80.0),
                       color: const Color.fromARGB(255, 33, 149, 243),
                       boxShadow: const [
                         BoxShadow(

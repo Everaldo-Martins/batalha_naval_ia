@@ -1,59 +1,7 @@
+
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import '../main.dart';
 import 'game.dart';
-
-class MyGame extends StatelessWidget {
-  const MyGame({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Batalha Naval - IA',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 33, 149, 243),
-        ),
-        useMaterial3: true,
-      ),
-      home: Scaffold(
-        appBar: null,
-        body: Container(
-          decoration: const BoxDecoration(
-            // Adicionando uma imagem de fundo
-            image: DecorationImage(
-              image: AssetImage('assets/bg.jpg'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Center(
-            child: Container(
-              constraints: const BoxConstraints(
-                minWidth: 300.0,
-                maxWidth: 450.0,
-                minHeight: 300.0,
-                maxHeight: 400.0,
-              ),
-              margin: const EdgeInsets.all(10.0),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
-                  child: Container(
-                    color: const Color.fromARGB(255, 220, 220, 220)
-                        .withOpacity(0.6),
-                    padding: const EdgeInsets.all(30.0),
-                    child: const StartGame(),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class StartGame extends StatefulWidget {
   const StartGame({super.key});
