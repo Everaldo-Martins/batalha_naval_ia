@@ -2,8 +2,8 @@
 import 'dart:math';
 
 class Ships {
-  final gridX;
-  final gridY;
+  final int gridX;
+  final int gridY;
 
   late var playerGrid;
   late var computerGrid;
@@ -19,7 +19,7 @@ class Ships {
     copy =
         List.generate(gridY, (y) => List.generate(gridX, (x) => [100, -1, 0]));
     computerGrid = shipsLoad(true);
-    playerGrid = shipsLoad(false);
+    playerGrid = shipsLoad(false); //List.generate(gridY, (y) => List.generate(gridX, (x) => [100, -1, 0]));
   }
 
   int calculateScore(bool isComputer) {

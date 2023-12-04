@@ -142,193 +142,360 @@ class _GameState extends State<Game> {
           color: Color.fromARGB(255, 216, 216, 216),
         ),
       ),
-      body: Stack(
-        children: [
-          Positioned.fill(
-            child: Image.asset(
-              'assets/bg.jpg',
-              fit: BoxFit.cover,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          bool isLandscape = constraints.maxWidth > constraints.maxHeight;
+          return Stack(
             children: [
-              Container(
-                constraints: const BoxConstraints(
-                  minWidth: 300.0,
-                  maxWidth: 500.0,
-                  minHeight: 215.0,
-                  maxHeight: 400.0,
-                ),
-                padding: const EdgeInsets.all(5.0),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5.0, horizontal: 10.0),
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 39, 39, 39),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 92, 92, 92),
-                              spreadRadius: 0,
-                              blurRadius: 15,
-                            ),
-                          ],
-                        ),
-                        child: Text(
-                          widget.playerName,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: gridX,
-                          crossAxisSpacing: 0.0,
-                          mainAxisSpacing: 0.0,
-                        ),
-                        itemCount: gridY * gridX,
-                        itemBuilder: (_, i) {
-                          int x = i % gridX;
-                          int y = i ~/ gridX;
-                          return Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 0.5,
-                                color: const Color.fromARGB(255, 12, 12, 12),
-                              ),
-                            ),
-                            child: Center(
-                              child: Image.asset(
-                                getImageFromGrid(ship.playerGrid, x, y, false),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
+              Positioned.fill(
+                child: Image.asset(
+                  'assets/bg.jpg',
+                  fit: BoxFit.cover,
                 ),
               ),
-              Container(
-                constraints: const BoxConstraints(
-                  minWidth: 300.0,
-                  maxWidth: 500.0,
-                  minHeight: 215.0,
-                  maxHeight: 400.0,
-                ),
-                padding: const EdgeInsets.all(5.0),
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 5.0, horizontal: 10.0),
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 39, 39, 39),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Color.fromARGB(255, 92, 92, 92),
-                              spreadRadius: 0,
-                              blurRadius: 15,
-                            ),
-                          ],
+              isLandscape
+                  ? _buildLandscapeContent()
+                  : _buildPortraitContent(), 
+              Align(
+                alignment: Alignment.lerp(
+                  const Alignment(0.0, 0.9),
+                  const Alignment(0.0, 0.9),
+                  0.5,
+                )!,
+                child: Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: SizedBox(
+                    width: 80,
+                    height: 50,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(80.0),
                         ),
-                        child: const Text(
-                          'Computador',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 255, 255, 255),
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
+                        backgroundColor:
+                            const Color.fromARGB(255, 33, 149, 243),
+                        shadowColor: const Color.fromARGB(255, 92, 92, 92),
+                        elevation: 15,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isSuperShot = !isSuperShot;
+                        });
+                      },
+                      child: const Icon(
+                        Icons.bolt,
+                        size: 36.0,
+                        color: Colors.amber,
                       ),
                     ),
-                    Expanded(
-                      child: GridView.builder(
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: gridX,
-                          crossAxisSpacing: 0.0,
-                          mainAxisSpacing: 0.0,
-                        ),
-                        itemCount: gridY * gridX,
-                        itemBuilder: (_, i) {
-                          int x = i % gridX;
-                          int y = i ~/ gridX;
-                          return GestureDetector(
-                            onTap: () => updateBoard(x, y),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                  width: 0.5,
-                                  color: const Color.fromARGB(255, 32, 32, 32),
-                                ),
-                              ),
-                              child: Center(
-                                child: Image.asset(
-                                  getImageFromGrid(
-                                      ship.computerGrid, x, y, true),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildPortraitContent() {
+  return Column(
+    children: [
+      Container(
+        constraints: const BoxConstraints(
+          minWidth: 300.0,
+          maxWidth: 500.0,
+          minHeight: 250.0,
+          maxHeight: 300.0,
+        ),
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 5.0,
+                  horizontal: 10.0,
+                ),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 39, 39, 39),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromARGB(255, 92, 92, 92),
+                      spreadRadius: 0,
+                      blurRadius: 15,
                     ),
                   ],
                 ),
-              ),              
+                child: Text(
+                  widget.playerName,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: gridX,
+                  crossAxisSpacing: 0.0,
+                  mainAxisSpacing: 0.0,
+                ),
+                itemCount: gridY * gridX,
+                itemBuilder: (_, i) {
+                  int x = i % gridX;
+                  int y = i ~/ gridX;
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        width: 0.5,
+                        color: const Color.fromARGB(255, 12, 12, 12),
+                      ),
+                    ),
+                    child: Center(
+                      child: Image.asset(
+                        getImageFromGrid(ship.playerGrid, x, y, false),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      Container(
+        constraints: const BoxConstraints(
+          minWidth: 300.0,
+          maxWidth: 500.0,
+          minHeight: 250.0,
+          maxHeight: 300.0,
+        ),
+        padding: const EdgeInsets.all(5.0),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  vertical: 5.0,
+                  horizontal: 10.0,
+                ),
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 39, 39, 39),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromARGB(255, 92, 92, 92),
+                      spreadRadius: 0,
+                      blurRadius: 15,
+                    ),
+                  ],
+                ),
+                child: const Text(
+                  'Computador',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 255, 255, 255),
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: gridX,
+                  crossAxisSpacing: 0.0,
+                  mainAxisSpacing: 0.0,
+                ),
+                itemCount: gridY * gridX,
+                itemBuilder: (_, i) {
+                  int x = i % gridX;
+                  int y = i ~/ gridX;
+                  return GestureDetector(
+                    onTap: () => updateBoard(x, y),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 0.5,
+                          color: const Color.fromARGB(255, 32, 32, 32),
+                        ),
+                      ),
+                      child: Center(
+                        child: Image.asset(
+                          getImageFromGrid(ship.computerGrid, x, y, true),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),      
+    ],
+  );
+}
+
+  Widget _buildLandscapeContent() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Container(
+          constraints: const BoxConstraints(
+            minWidth: 300.0,
+            maxWidth: 500.0,
+            minHeight: 250.0,
+            maxHeight: 400.0,
+          ),
+          padding: const EdgeInsets.all(5.0),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 5.0,
+                    horizontal: 10.0,
+                  ),
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 39, 39, 39),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromARGB(255, 92, 92, 92),
+                        spreadRadius: 0,
+                        blurRadius: 15,
+                      ),
+                    ],
+                  ),
+                  child: Text(
+                    widget.playerName,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: gridX,
+                    crossAxisSpacing: 0.0,
+                    mainAxisSpacing: 0.0,
+                  ),
+                  itemCount: gridY * gridX,
+                  itemBuilder: (_, i) {
+                    int x = i % gridX;
+                    int y = i ~/ gridX;
+                    return Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 0.5,
+                          color: const Color.fromARGB(255, 12, 12, 12),
+                        ),
+                      ),
+                      child: Center(
+                        child: Image.asset(
+                          getImageFromGrid(ship.playerGrid, x, y, false),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
-          Align(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: SizedBox(
-                width: 80,
-                height: 50,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(80.0),
-                    ),
-                    backgroundColor:
-                        const Color.fromARGB(255, 33, 149, 243),
-                    shadowColor: const Color.fromARGB(255, 92, 92, 92),
-                    elevation: 15,
+        ),
+        Container(
+          constraints: const BoxConstraints(
+            minWidth: 300.0,
+            maxWidth: 500.0,
+            minHeight: 250.0,
+            maxHeight: 400.0,
+          ),
+          padding: const EdgeInsets.all(5.0),
+          child: Column(
+            children: [
+              Align(
+                alignment: Alignment.topCenter,
+                child: Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 5.0,
+                    horizontal: 10.0,
                   ),
-                  onPressed: () {
-                    setState(() {
-                      isSuperShot = !isSuperShot;
-                    });
-                  },
-                  child: const Icon(
-                    Icons.bolt,
-                    size: 36.0,
-                    color: Colors.amber,
+                  decoration: const BoxDecoration(
+                    color: Color.fromARGB(255, 39, 39, 39),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromARGB(255, 92, 92, 92),
+                        spreadRadius: 0,
+                        blurRadius: 15,
+                      ),
+                    ],
+                  ),
+                  child: const Text(
+                    'Computador',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 255, 255, 255),
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                 ),
               ),
-            ),
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: gridX,
+                    crossAxisSpacing: 0.0,
+                    mainAxisSpacing: 0.0,
+                  ),
+                  itemCount: gridY * gridX,
+                  itemBuilder: (_, i) {
+                    int x = i % gridX;
+                    int y = i ~/ gridX;
+                    return GestureDetector(
+                      onTap: () => updateBoard(x, y),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            width: 0.5,
+                            color: const Color.fromARGB(255, 32, 32, 32),
+                          ),
+                        ),
+                        child: Center(
+                          child: Image.asset(
+                            getImageFromGrid(ship.computerGrid, x, y, true),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),        
+      ],
     );
   }
 }
