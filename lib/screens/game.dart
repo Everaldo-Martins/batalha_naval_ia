@@ -144,7 +144,7 @@ class _GameState extends State<Game> {
       ),
       body: LayoutBuilder(
         builder: (context, constraints) {
-          bool isLandscape = MediaQuery.of(context).size.width > 800;
+          bool isLandscape = MediaQuery.of(context).size.width > 1080;
           return Stack(
             children: [
               Positioned.fill(
