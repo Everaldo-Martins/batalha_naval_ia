@@ -13,7 +13,7 @@ class StartScreen extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 33, 149, 243),
+          seedColor: const Color(0xFF2195F3),
         ),
         useMaterial3: true,
       ),
@@ -40,10 +40,9 @@ class StartScreen extends StatelessWidget {
                 // Botão "Jogar"
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(
-                        color: const Color.fromARGB(255, 32, 32, 32), width: 4),
-                    color: const Color.fromARGB(255, 33, 149, 243)
-                        .withOpacity(0.7),
+                    border:
+                        Border.all(color: const Color(0xFF202020), width: 4),
+                    color: const Color(0xFF2195F3).withOpacity(0.7),
                     shape: BoxShape.circle,
                   ),
                   child: SizedBox(
@@ -73,17 +72,17 @@ class StartScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
             child: SizedBox(
               width: 80,
               height: 50,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(80.0),
-                  color: const Color.fromARGB(255, 33, 149, 243),
+                  borderRadius: BorderRadius.circular(40.0),
+                  color: const Color(0xFF2195F3),
                   boxShadow: const [
                     BoxShadow(
-                      color: Color.fromARGB(255, 92, 92, 92),
+                      color: Color(0xFF5C5C5C),
                       spreadRadius: 1,
                       blurRadius: 15,
                     ),
@@ -91,13 +90,13 @@ class StartScreen extends StatelessWidget {
                 ),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(0, 129, 129, 129),
-                    elevation: 0,
+                    backgroundColor: const Color(0x00818181),
+                    elevation: 2,
                   ),
                   child: const Icon(
                     Icons.list,
                     size: 30.0,
-                    color: Color.fromARGB(255, 32, 32, 32),
+                    color: Color(0xFF202020),
                   ),
                   onPressed: () {
                     Navigator.push(

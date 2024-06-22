@@ -1,5 +1,5 @@
-
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../main.dart';
 import 'game.dart';
 
@@ -13,7 +13,13 @@ class StartGame extends StatefulWidget {
 
 class _StartGameState extends State<StartGame> {
   final TextEditingController _nameController = TextEditingController();
-  // ignore: unused_field
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  }
+  
   bool _isButtonEnabled = false;
   String _selectedBoardSize = '10x15';
 
@@ -59,24 +65,7 @@ class _StartGameState extends State<StartGame> {
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Radio(
-              value: '10x15',
-              groupValue: _selectedBoardSize,
-              onChanged: (value) {
-                setState(() {
-                  _selectedBoardSize = value.toString();
-                });
-              },
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 20.0),
-              child: const Text('10x15',
-                  style: TextStyle(
-                    color: Color.fromRGBO(10, 10, 10, 1.0),
-                    fontWeight: FontWeight.w600,
-                  )),
-            ),
+          children: [            
             Radio(
               value: '8x12',
               groupValue: _selectedBoardSize,
@@ -89,6 +78,23 @@ class _StartGameState extends State<StartGame> {
             Container(
               margin: const EdgeInsets.only(left: 0),
               child: const Text('8x12',
+                  style: TextStyle(
+                    color: Color.fromRGBO(10, 10, 10, 1.0),
+                    fontWeight: FontWeight.w600,
+                  )),
+            ),
+            Radio(
+              value: '10x15',
+              groupValue: _selectedBoardSize,
+              onChanged: (value) {
+                setState(() {
+                  _selectedBoardSize = value.toString();
+                });
+              },
+            ),
+            Container(
+              margin: const EdgeInsets.only(right: 20.0),
+              child: const Text('10x15',
                   style: TextStyle(
                     color: Color.fromRGBO(10, 10, 10, 1.0),
                     fontWeight: FontWeight.w600,

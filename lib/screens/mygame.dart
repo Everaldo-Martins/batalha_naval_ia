@@ -12,7 +12,7 @@ class MyGame extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color.fromARGB(255, 33, 149, 243),
+          seedColor: const Color(0xFF2195F3),
         ),
         useMaterial3: true,
       ),
@@ -40,7 +40,7 @@ class MyGame extends StatelessWidget {
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
                   child: Container(
-                    color: const Color.fromARGB(255, 220, 220, 220)
+                    color: const Color(0xFFDCDCDC)
                         .withOpacity(0.6),
                     padding: const EdgeInsets.all(30.0),
                     child: const StartGame(),
@@ -67,7 +67,7 @@ class _StartGameState extends State<StartGame> {
   final TextEditingController _nameController = TextEditingController();
   // ignore: unused_field
   bool _isButtonEnabled = false;
-  String _selectedBoardSize = '10x15';
+  String _selectedBoardSize = '8x12';
 
   @override
   Widget build(BuildContext context) {
@@ -89,14 +89,14 @@ class _StartGameState extends State<StartGame> {
           decoration: const InputDecoration(
             labelText: 'Nome do jogador',
             labelStyle: TextStyle(
-              color: Color.fromRGBO(34, 34, 34, 1),
+              color: Color(0xFF222222),
               fontWeight: FontWeight.w600,
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color.fromRGBO(10, 10, 10, 1.0)),
+              borderSide: BorderSide(color: Color(0xFF0A0A0A)),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color.fromRGBO(10, 10, 10, 1.0)),
+              borderSide: BorderSide(color: Color(0xFF0A0A0A)),
             ),
           ),
         ),
@@ -104,31 +104,14 @@ class _StartGameState extends State<StartGame> {
         const Text(
           'Tamanho do tabuleiro',
           style: TextStyle(
-            color: Color.fromRGBO(10, 10, 10, 1.0),
+            color: Color(0xFF0A0A0A),
             fontSize: 18.0,
             fontWeight: FontWeight.w600,
           ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Radio(
-              value: '10x15',
-              groupValue: _selectedBoardSize,
-              onChanged: (value) {
-                setState(() {
-                  _selectedBoardSize = value.toString();
-                });
-              },
-            ),
-            Container(
-              margin: const EdgeInsets.only(right: 20.0),
-              child: const Text('10x15',
-                  style: TextStyle(
-                    color: Color.fromRGBO(10, 10, 10, 1.0),
-                    fontWeight: FontWeight.w600,
-                  )),
-            ),
+          children: [            
             Radio(
               value: '8x12',
               groupValue: _selectedBoardSize,
@@ -142,7 +125,24 @@ class _StartGameState extends State<StartGame> {
               margin: const EdgeInsets.only(left: 0),
               child: const Text('8x12',
                   style: TextStyle(
-                    color: Color.fromRGBO(10, 10, 10, 1.0),
+                    color: Color(0xFF0A0A0A),
+                    fontWeight: FontWeight.w600,
+                  )),
+            ),
+            Radio(
+              value: '10x15',
+              groupValue: _selectedBoardSize,
+              onChanged: (value) {
+                setState(() {
+                  _selectedBoardSize = value.toString();
+                });
+              },
+            ),
+            Container(
+              margin: const EdgeInsets.only(right: 20.0),
+              child: const Text('10x15',
+                  style: TextStyle(
+                    color: Color(0xFF0A0A0A),
                     fontWeight: FontWeight.w600,
                   )),
             ),
@@ -166,15 +166,15 @@ class _StartGameState extends State<StartGame> {
               : null,
           child: Material(
             borderRadius: BorderRadius.circular(10.0),
-            color: const Color.fromARGB(255, 33, 149, 243),
+            color: const Color(0xFF2195F3),
             elevation: 15,
-            shadowColor: const Color.fromARGB(255, 92, 92, 92),
+            shadowColor: const Color(0xFF5C5C5C),
             child: const Padding(
               padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 52.0),
               child: Text(
                 'Iniciar',
                 style: TextStyle(
-                  color: Color.fromARGB(255, 37, 37, 37),
+                  color: Color(0xFF252525),
                   fontSize: 15.0,
                   fontWeight: FontWeight.w600,
                 ),
