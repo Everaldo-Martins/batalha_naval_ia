@@ -2,6 +2,7 @@ import 'dart:math';
 import 'ships.dart';
 
 class Computer {
+  String computerName = "Computador";
   int shots = 0;
   int hits = 0;
   int supershot = 2;

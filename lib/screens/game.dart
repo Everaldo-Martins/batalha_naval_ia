@@ -37,16 +37,10 @@ class _GameState extends State<Game> {
   }
 
   void initializeGame() {
-    switch (widget.boardSize) {
-      case '10x15':
-        gridX = 15;
-        gridY = 10;
-        break;
-      default:
-        gridX = 12;
-        gridY = 8;
-        break;
-    }
+    widget.boardSize == '8x12'
+        ? (gridX = 12, gridY = 8)
+        : (gridX = 15, gridY = 10);
+
     ship = Ships(gridX, gridY);
     player = Player(widget.playerName, 0, ship);
     bot = Computer(ship);
@@ -140,8 +134,16 @@ class _GameState extends State<Game> {
           ),
           Column(
             children: [
-              buildGridColumn(widget.playerName, ship.playerGrid, false),
-              buildGridColumn('Computador', ship.computerGrid, true),
+              buildGridColumn(
+                widget.playerName,
+                ship.playerGrid,
+                false,
+              ),
+              buildGridColumn(
+                'Computador',
+                ship.computerGrid,
+                true,
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
@@ -172,6 +174,7 @@ class _GameState extends State<Game> {
                   ),
                 ),
               ),
+              const SizedBox(height: 8),
             ],
           ),
         ],
@@ -191,7 +194,7 @@ class _GameState extends State<Game> {
               child: Container(
                 width: double.infinity,
                 padding:
-                    const EdgeInsets.symmetric(vertical: 1, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 decoration: const BoxDecoration(
                   color: colorBackground,
                   boxShadow: [
@@ -207,7 +210,7 @@ class _GameState extends State<Game> {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 18.0,
+                    fontSize: 18,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

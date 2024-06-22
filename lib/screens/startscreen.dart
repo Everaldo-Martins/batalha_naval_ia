@@ -78,7 +78,7 @@ class StartScreen extends StatelessWidget {
               height: 50,
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40.0),
+                  borderRadius: BorderRadius.circular(60),
                   color: const Color(0xFF2195F3),
                   boxShadow: const [
                     BoxShadow(
@@ -91,7 +91,7 @@ class StartScreen extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0x00818181),
-                    elevation: 2,
+                    elevation: 0,
                   ),
                   child: const Icon(
                     Icons.list,
