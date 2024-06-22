@@ -1,4 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
 import 'package:flutter/material.dart';
 import '../main.dart';
 import '/code/player.dart';
@@ -45,7 +44,6 @@ class _GameState extends State<Game> {
     bot = Computer(ship);
   }
 
-  // Mostrar a localização de todos os navios do computador que não foram descobertos
   void showYourEnemy() {
     for (var y = 0; y < ship.gridY; ++y) {
       for (var x = 0; x < ship.gridX; ++x) {
@@ -85,8 +83,6 @@ class _GameState extends State<Game> {
   }
 
   void updateBoard(int x, int y) {
-    int playerScore = 0;
-    int computerScore = 0;
     if (ship.lifeComputer != 0 && ship.computerGrid[y][x][0] <= 100) {
       togglerShot(x, y);
       setState(() {
@@ -94,7 +90,6 @@ class _GameState extends State<Game> {
             .calculateScore(false); // Substitua pela lógica real da pontuação
         player.points = playerScore;
       });
-
       bot.gameMove();
       setState(() {
         computerScore = ship.calculateScore(true);
@@ -102,7 +97,6 @@ class _GameState extends State<Game> {
     }
 
     if (ship.lifeComputer == 0) {
-      // Grava os dados e pontos do player, e após exibe a tela venceu.
       Navigator.push(
         context,
         MaterialPageRoute(
