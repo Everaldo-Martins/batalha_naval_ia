@@ -167,7 +167,7 @@ class _GameState extends State<Game> {
                       },
                       child: const Icon(
                         Icons.bolt,
-                        size: 36.0,
+                        size: 30,
                         color: Color(0xFFFFC107),
                       ),
                     ),
@@ -186,15 +186,16 @@ class _GameState extends State<Game> {
       String name, List<List<List<int>>> grid, bool isComputer) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Align(
               alignment: Alignment.topCenter,
               child: Container(
                 width: double.infinity,
                 padding:
-                    const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 decoration: const BoxDecoration(
                   color: colorBackground,
                   boxShadow: [
@@ -210,7 +211,7 @@ class _GameState extends State<Game> {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
                 ),

@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'scoreboard.dart';
-import 'mygame.dart';
+import 'startgame.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key, required String title});
@@ -32,16 +32,21 @@ class StartScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset('assets/logo_start.png',
-                      width: 600.0, height: 229.0),
+                  padding: const EdgeInsets.all(8),
+                  child: Image.asset(
+                    'assets/logo_start.png',
+                    width: 600,
+                    height: 229,
+                  ),
                 ),
                 const SizedBox(height: 20),
                 // Botão "Jogar"
                 Container(
                   decoration: BoxDecoration(
-                    border:
-                        Border.all(color: const Color(0xFF202020), width: 4),
+                    border: Border.all(
+                      color: const Color(0xFF202020),
+                      width: 4,
+                    ),
                     color: const Color(0xFF2195F3).withOpacity(0.7),
                     shape: BoxShape.circle,
                   ),
@@ -49,18 +54,19 @@ class StartScreen extends StatelessWidget {
                     width: 90.0,
                     height: 90.0,
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100.0),
+                      borderRadius: BorderRadius.circular(100),
                       child: BackdropFilter(
-                        filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+                        filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
                         child: IconButton(
                           iconSize: 62,
                           icon: const Icon(Icons.play_arrow),
-                          color: const Color.fromARGB(255, 37, 37, 37),
+                          color: const Color(0xFF252525),
                           onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MyGame()),
+                                builder: (context) => const MyGame(),
+                              ),
                             );
                           },
                         ),
@@ -95,7 +101,7 @@ class StartScreen extends StatelessWidget {
                   ),
                   child: const Icon(
                     Icons.list,
-                    size: 30.0,
+                    size: 30,
                     color: Color(0xFF202020),
                   ),
                   onPressed: () {

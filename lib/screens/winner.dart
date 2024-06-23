@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'scoreboard.dart';
-import 'mygame.dart';
+import 'startgame.dart';
 
 class Winner extends StatelessWidget {
   final String winnerName;
@@ -32,11 +32,11 @@ class Winner extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.all(12),
                 child: Image.asset(
                   'assets/winner.png',
-                  width: 450.0,
-                  height: 249.0,
+                  width: 450,
+                  height: 249,
                 ),
               ),
               const SizedBox(height: 20),
@@ -44,7 +44,7 @@ class Winner extends StatelessWidget {
                 'Nome: $winnerName',
                 style: const TextStyle(
                   fontSize: 22,
-                  color: Colors.white,
+                  color: Color(0xFFFFFFFF),
                 ),
               ),
               const SizedBox(height: 10),
@@ -52,34 +52,35 @@ class Winner extends StatelessWidget {
                 'Pontos: $points',
                 style: const TextStyle(
                   fontSize: 22,
-                  color: Colors.white,
+                  color: Color(0xFFFFFFFF),
                 ),
               ),
-              const SizedBox(height: 50.0),
+              const SizedBox(height: 50),
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(
-                      color: const Color.fromARGB(255, 32, 32, 32), width: 4),
-                  color:
-                      const Color.fromARGB(255, 33, 149, 243).withOpacity(0.7),
+                    color: const Color(0xFF202020),
+                    width: 4,
+                  ),
+                  color: const Color(0xFF2195F3).withOpacity(0.7),
                   shape: BoxShape.circle,
                 ),
                 child: SizedBox(
-                  width: 90.0,
-                  height: 90.0,
+                  width: 90,
+                  height: 90,
                   child: ClipRRect(
-                    borderRadius: BorderRadius.circular(100.0),
+                    borderRadius: BorderRadius.circular(100),
                     child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 6.0, sigmaY: 6.0),
+                      filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
                       child: IconButton(
                         iconSize: 62,
                         icon: const Icon(Icons.restart_alt_sharp),
-                        color: const Color.fromARGB(255, 37, 37, 37),
+                        color: const Color(0xFF252525),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const MyGame(),
+                              builder: (context) => const StartGame(),
                             ),
                           );
                         },
@@ -88,19 +89,19 @@ class Winner extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 20),
               Padding(
-                padding: const EdgeInsets.all(18.0),
+                padding: const EdgeInsets.all(18),
                 child: SizedBox(
                   width: 80,
                   height: 50,
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(80.0),
-                      color: const Color.fromARGB(255, 33, 149, 243),
+                      borderRadius: BorderRadius.circular(80),
+                      color: const Color(0xFF2195F3),
                       boxShadow: const [
                         BoxShadow(
-                          color: Color.fromARGB(255, 92, 92, 92),
+                          color: Color(0xFF5C5C5C),
                           spreadRadius: 1,
                           blurRadius: 15,
                         ),
@@ -108,13 +109,13 @@ class Winner extends StatelessWidget {
                     ),
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
+                        backgroundColor: const Color(0x00000000),
                         elevation: 0,
                       ),
                       child: const Icon(
                         Icons.list,
                         size: 30.0,
-                        color: Color.fromARGB(255, 32, 32, 32),
+                        color: Color(0xFF202020),
                       ),
                       onPressed: () {
                         Navigator.push(

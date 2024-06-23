@@ -1,7 +1,56 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'dart:ui';
 import '../main.dart';
 import 'game.dart';
+
+class MyGame extends StatelessWidget {
+  const MyGame({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Batalha Naval - IA',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2195F3),
+        ),
+        useMaterial3: true,
+      ),
+      home: Scaffold(
+        appBar: null,
+        body: Container(
+          decoration: const BoxDecoration(
+            // Adicionando uma imagem de fundo
+            image: DecorationImage(
+              image: AssetImage('assets/bg.jpg'),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 400.0,
+                maxHeight: 400.0,
+              ),
+              margin: const EdgeInsets.all(10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+                  child: Container(
+                    color: const Color(0xFFDCDCDC).withOpacity(0.6),
+                    padding: const EdgeInsets.all(30),
+                    child: const StartGame(),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class StartGame extends StatefulWidget {
   const StartGame({super.key});
@@ -13,15 +62,9 @@ class StartGame extends StatefulWidget {
 
 class _StartGameState extends State<StartGame> {
   final TextEditingController _nameController = TextEditingController();
-
-  @override
-  void initState() {
-    super.initState();
-    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  }
-  
+  // ignore: unused_field
   bool _isButtonEnabled = false;
-  String _selectedBoardSize = '10x15';
+  String _selectedBoardSize = '8x12';
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +73,8 @@ class _StartGameState extends State<StartGame> {
       children: [
         Image.asset(
           'assets/logo.png',
-          width: 300.0,
-          height: 72.0,
+          width: 300,
+          height: 72,
         ),
         TextField(
           controller: _nameController,
@@ -43,29 +86,29 @@ class _StartGameState extends State<StartGame> {
           decoration: const InputDecoration(
             labelText: 'Nome do jogador',
             labelStyle: TextStyle(
-              color: Color.fromRGBO(34, 34, 34, 1),
+              color: Color(0xFF222222),
               fontWeight: FontWeight.w600,
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color.fromRGBO(10, 10, 10, 1.0)),
+              borderSide: BorderSide(color: Color(0xFF0A0A0A)),
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Color.fromRGBO(10, 10, 10, 1.0)),
+              borderSide: BorderSide(color: Color(0xFF0A0A0A)),
             ),
           ),
         ),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 12),
         const Text(
           'Tamanho do tabuleiro',
           style: TextStyle(
-            color: Color.fromRGBO(10, 10, 10, 1.0),
-            fontSize: 18.0,
+            color: Color(0xFF0A0A0A),
+            fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [            
+          children: [
             Radio(
               value: '8x12',
               groupValue: _selectedBoardSize,
@@ -79,7 +122,7 @@ class _StartGameState extends State<StartGame> {
               margin: const EdgeInsets.only(left: 0),
               child: const Text('8x12',
                   style: TextStyle(
-                    color: Color.fromRGBO(10, 10, 10, 1.0),
+                    color: Color(0xFF0A0A0A),
                     fontWeight: FontWeight.w600,
                   )),
             ),
@@ -93,16 +136,16 @@ class _StartGameState extends State<StartGame> {
               },
             ),
             Container(
-              margin: const EdgeInsets.only(right: 20.0),
+              margin: const EdgeInsets.only(right: 15),
               child: const Text('10x15',
                   style: TextStyle(
-                    color: Color.fromRGBO(10, 10, 10, 1.0),
+                    color: Color(0xFF0A0A0A),
                     fontWeight: FontWeight.w600,
                   )),
             ),
           ],
         ),
-        const SizedBox(height: 10.0),
+        const SizedBox(height: 6),
         TextButton(
           onPressed: _isButtonEnabled
               ? () {
@@ -119,19 +162,16 @@ class _StartGameState extends State<StartGame> {
                 }
               : null,
           child: Material(
-            borderRadius: BorderRadius.circular(10.0),
-            color: const Color.fromARGB(255, 33, 149, 243),
-            elevation: 15,
-            shadowColor: const Color.fromARGB(255, 92, 92, 92),
+            borderRadius: BorderRadius.circular(80),
+            color: const Color(0xFF2195F3),
+            elevation: 6,
+            shadowColor: const Color(0xFF5C5C5C),
             child: const Padding(
-              padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 52.0),
-              child: Text(
-                'Iniciar',
-                style: TextStyle(
-                  color: Color.fromARGB(255, 37, 37, 37),
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w600,
-                ),
+              padding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              child: Icon(
+                Icons.play_arrow_rounded,
+                size: 36,
+                color: Color(0xFF0A0A0A),
               ),
             ),
           ),
