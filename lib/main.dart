@@ -35,7 +35,6 @@ class MyApp extends StatelessWidget {
 Future<void> addBanco(String name, int score) async {
   var playersBox = Hive.box<Players>('players');
 
-  // Verificar se o usuário já existe
   var playersExists = playersBox.values.any((players) => players.name == name);
 
   if (!playersExists) {
@@ -47,7 +46,7 @@ Future<void> addBanco(String name, int score) async {
   } else {
     var existingPlayer =
         playersBox.values.firstWhere((players) => players.name == name);
-    // Access the existing players and update the score
+
     existingPlayer.score = score;
     await playersBox.put(existingPlayer.key, existingPlayer);
   }

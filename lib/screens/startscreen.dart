@@ -40,7 +40,6 @@ class StartScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 20),
-                // Botão "Jogar"
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(

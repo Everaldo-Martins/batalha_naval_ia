@@ -20,7 +20,6 @@ class MyGame extends StatelessWidget {
         appBar: null,
         body: Container(
           decoration: const BoxDecoration(
-            // Adicionando uma imagem de fundo
             image: DecorationImage(
               image: AssetImage('assets/bg.jpg'),
               fit: BoxFit.cover,

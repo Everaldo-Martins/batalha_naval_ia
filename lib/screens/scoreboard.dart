@@ -7,14 +7,11 @@ class ScoreBoard extends StatelessWidget {
   const ScoreBoard({super.key});
 
   Future<List<Map<String, dynamic>>> obterNomesDoHive() async {
-    // Utilize a referência local para playerBox
     var playerBox = Hive.box<Players>('players');
 
-    // Ordenar os usuários por pontuação em ordem decrescente
     final playerList = playerBox.values.toList()
       ..sort((a, b) => b.score.compareTo(a.score));
 
-    // Pegar os nomes dos primeiros 5 usuários (top 5)
     final top5Players = playerList.take(5);
 
     List<Map<String, dynamic>> dados = [];
