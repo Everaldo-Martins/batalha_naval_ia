@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../main.dart';
-import '/code/player.dart';
-import '/code/computer.dart';
-import '/code/ships.dart';
+import '../classes/player.dart';
+import '../classes/computer.dart';
+import '../classes/ships.dart';
 import 'winner.dart';
 
 class Game extends StatefulWidget {

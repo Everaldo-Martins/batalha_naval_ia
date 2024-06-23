@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import '../code/players.dart';
+import '../classes/players.dart';
 import 'dart:ui';
 
 class ScoreBoard extends StatelessWidget {
