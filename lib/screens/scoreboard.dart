@@ -36,12 +36,12 @@ class ScoreBoard extends StatelessWidget {
         title: const Text(
           'Batalha Naval - IA',
           style: TextStyle(
-            color: Color.fromARGB(255, 216, 216, 216),
+            color: Color(0xFFD8D8D8),
           ),
         ),
-        backgroundColor: const Color.fromARGB(255, 32, 32, 32),
+        backgroundColor: const Color(0xFF202020),
         iconTheme: const IconThemeData(
-          color: Color.fromARGB(255, 216, 216, 216),
+          color: Color(0xFFD8D8D8),
         ),
       ),
       body: Stack(
@@ -60,13 +60,13 @@ class ScoreBoard extends StatelessWidget {
                 width: 350.0,
                 height: 435.0,
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(20.0),
+                  borderRadius: BorderRadius.circular(20),
                   child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 8.0),
+                    filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
                     child: Container(
-                      color: const Color.fromARGB(255, 220, 220, 220)
+                      color: const Color(0xFFDCDCDC)
                           .withOpacity(0.6),
-                      padding: const EdgeInsets.all(30.0),
+                      padding: const EdgeInsets.all(30),
                       child: FutureBuilder<List<Map<String, dynamic>>>(
                         future: obterNomesDoHive(),
                         builder: (context, snapshot) {
@@ -90,7 +90,7 @@ class ScoreBoard extends StatelessWidget {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SizedBox(height: 10.0),
+                                const SizedBox(height: 10),
                                 ...dados.map((data) {
                                   return ListTile(
                                     title: Text(

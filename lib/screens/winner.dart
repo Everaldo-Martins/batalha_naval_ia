@@ -80,7 +80,7 @@ class Winner extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const StartGame(),
+                              builder: (context) => const MyGame(),
                             ),
                           );
                         },
