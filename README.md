@@ -32,7 +32,7 @@
 
 ### 🚀 Equipe de Desenvolvimento
 
-- 👨🏻‍💻 **[Arthur](https://github.com/arthurrpf)**
-- 👨🏽‍💻 **[Everaldo](https://github.com/Everaldo-Martins)**
-- 👨🏽‍💻 **[Júlio](https://github.com/juliocesar710)**
-- 👩🏻‍💻 **[Lilianny](https://github.com/LiliannyMarinho)**
+👨🏻‍💻 **[Arthur](https://github.com/arthurrpf)**
+👨🏽‍💻 **[Everaldo](https://github.com/Everaldo-Martins)**
+👨🏽‍💻 **[Júlio](https://github.com/juliocesar710)**
+👩🏻‍💻 **[Lilianny](https://github.com/LiliannyMarinho)**
