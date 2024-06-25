@@ -64,7 +64,7 @@ class _GameState extends State<Game> {
   String getImageFromGrid(
       List<List<List<int>>> grid, int x, int y, bool isComputer) {
     int cellValue = grid[y][x][0];
-    return 'assets/tab_img/tab${isComputer && cellValue < 100 ? 100 : cellValue}.png';
+    return 'assets/images/tab${isComputer && cellValue < 100 ? 100 : cellValue}.png';
   }
 
   bool isSuperShot = false;
@@ -128,7 +128,7 @@ class _GameState extends State<Game> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/bg.jpg',
+              'assets/images/bg.jpg',
               fit: BoxFit.cover,
             ),
           ),
@@ -211,6 +211,7 @@ class _GameState extends State<Game> {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     color: Colors.white,
+                    fontFamily: 'Comfortaa',
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),

@@ -64,7 +64,8 @@ flutter:
   # To add assets to your application, add an assets section, like this: 
   assets:
     - assets/
-    - assets/tab_img/
+    - assets/images/
+    - assets/fonts/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
@@ -79,10 +80,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Comfortaa
+      fonts:
+        - asset: assets/fonts/Comfortaa-VariableFont_wght.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

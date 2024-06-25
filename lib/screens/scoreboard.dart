@@ -48,7 +48,7 @@ class ScoreBoard extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/bg.jpg'),
+                image: AssetImage('assets/images/bg.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -61,8 +61,7 @@ class ScoreBoard extends StatelessWidget {
                   child: BackdropFilter(
                     filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
                     child: Container(
-                      color: const Color(0xFFDCDCDC)
-                          .withOpacity(0.6),
+                      color: const Color(0xFFDCDCDC).withOpacity(0.6),
                       padding: const EdgeInsets.all(30),
                       child: FutureBuilder<List<Map<String, dynamic>>>(
                         future: obterNomesDoHive(),
@@ -83,6 +82,7 @@ class ScoreBoard extends StatelessWidget {
                                 const Text(
                                   'Top 5 ranking',
                                   style: TextStyle(
+                                    fontFamily: 'Comfortaa',
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -93,11 +93,16 @@ class ScoreBoard extends StatelessWidget {
                                     title: Text(
                                       '${data['posicao']}. ${data['nome']}',
                                       style: const TextStyle(
+                                        fontFamily: 'Comfortaa',
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                     subtitle: Text(
                                       'Pontuação: ${data['pontuacao']}',
+                                      style: const TextStyle(
+                                        fontFamily: 'Comfortaa',
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                   );
                                 }),

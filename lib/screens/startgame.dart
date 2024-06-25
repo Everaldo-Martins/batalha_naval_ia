@@ -21,7 +21,7 @@ class MyGame extends StatelessWidget {
         body: Container(
           decoration: const BoxDecoration(
             image: DecorationImage(
-              image: AssetImage('assets/bg.jpg'),
+              image: AssetImage('assets/images/bg.jpg'),
               fit: BoxFit.cover,
             ),
           ),
@@ -71,7 +71,7 @@ class _StartGameState extends State<StartGame> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Image.asset(
-          'assets/logo.png',
+          'assets/images/logo.png',
           width: 300,
           height: 72,
         ),
@@ -101,6 +101,7 @@ class _StartGameState extends State<StartGame> {
           'Tamanho do tabuleiro',
           style: TextStyle(
             color: Color(0xFF0A0A0A),
+            fontFamily: 'Comfortaa',
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -122,6 +123,7 @@ class _StartGameState extends State<StartGame> {
               child: const Text('8x12',
                   style: TextStyle(
                     color: Color(0xFF0A0A0A),
+                    fontFamily: 'Comfortaa',
                     fontWeight: FontWeight.w600,
                   )),
             ),
@@ -139,6 +141,7 @@ class _StartGameState extends State<StartGame> {
               child: const Text('10x15',
                   style: TextStyle(
                     color: Color(0xFF0A0A0A),
+                    fontFamily: 'Comfortaa',
                     fontWeight: FontWeight.w600,
                   )),
             ),

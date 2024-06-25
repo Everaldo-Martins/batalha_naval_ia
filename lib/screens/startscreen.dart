@@ -24,7 +24,7 @@ class StartScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             decoration: const BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('assets/bg.jpg'),
+                image: AssetImage('assets/images/bg.jpg'),
                 fit: BoxFit.cover,
               ),
             ),
@@ -34,7 +34,7 @@ class StartScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: Image.asset(
-                    'assets/logo_start.png',
+                    'assets/images/logo_start.png',
                     width: 600,
                     height: 229,
                   ),

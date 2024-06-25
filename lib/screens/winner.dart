@@ -21,7 +21,7 @@ class Winner extends StatelessWidget {
         height: double.infinity,
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/bg.jpg'),
+            image: AssetImage('assets/images/bg.jpg'),
             fit: BoxFit.cover,
           ),
         ),
@@ -34,7 +34,7 @@ class Winner extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(12),
                 child: Image.asset(
-                  'assets/winner.png',
+                  'assets/images/winner.png',
                   width: 450,
                   height: 249,
                 ),
@@ -43,6 +43,7 @@ class Winner extends StatelessWidget {
               Text(
                 'Nome: $winnerName',
                 style: const TextStyle(
+                  fontFamily: 'Comfortaa',
                   fontSize: 22,
                   color: Color(0xFFFFFFFF),
                 ),
@@ -51,6 +52,7 @@ class Winner extends StatelessWidget {
               Text(
                 'Pontos: $points',
                 style: const TextStyle(
+                  fontFamily: 'Comfortaa',
                   fontSize: 22,
                   color: Color(0xFFFFFFFF),
                 ),
