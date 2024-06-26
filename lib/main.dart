@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'classes/players.dart';
 import 'screens/startscreen.dart';
@@ -7,6 +8,7 @@ late Box<Players> playersBox;
 
 void main() async {
   await Hive.initFlutter();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   Hive.registerAdapter(PlayersAdapter());
   playersBox = await Hive.openBox<Players>('players');
 
@@ -18,16 +20,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Batalha Naval - IA',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF2195F3),
-        ),
-        useMaterial3: true,
-      ),
-      home: const StartScreen(title: 'Batalha Naval - IA'),
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,     
+      home: StartScreen(title: 'Batalha Naval - IA'),
     );
   }
 }
